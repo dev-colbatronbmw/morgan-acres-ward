@@ -50,44 +50,65 @@ app.use(
 // }
 
 const pool = mysql.createPool({
-  host: "us-cdbr-iron-east-01.cleardb.net",
-  user: "b08f2140990b49",
-  password: "fa587cc0",
-  database: "heroku_9f57e5ddb449e39"
+  host: "us-cdbr-east-03.cleardb.com",
+  user: "b54de4b813b0d2",
+  password: "e33f4fcc",
+  database: "heroku_3b6ba14cc34f6dd"
 });
 
 function getConnection() {
   return pool;
 }
-app.get("/api/bulletin", cors(), (req, res) => {
-  const connection = getConnection();
-
-  const qString = "SELECT * FROM api";
-  connection.query(qString, (err, rows, fields) => {
+app.get("/api/sections", cors(), (req, res) => {
+  let sections = [];
+  let sectionContent = [];
+  getConnection().query("SELECT * FROM sections", (err, rows, fields) => {
     if (err) {
       console.log("Failed to query for products: " + err);
       res.sendStatus(500);
       res.end();
       return;
     }
-    // console.log("success?");
-    console.log(rows);
 
     //code modification
-    const products = rows.map(row => {
+    sections = rows.map(row => {
       return {
-        prodId: row.prodId,
-        prodName: row.prodName,
-        prodDesc: row.prodDesc,
-        prodPrice: row.prodPrice,
-        prodRating: row.prodRating,
-        prodCreatedDate: row.prodCreatedDate,
-        prodModifiedDate: row.prodModifiedDate
+        id: row.id,
+        name: row.name
       };
     });
 
-    res.json(products);
+    console.log(sections);
+    res.json(sections);
   });
+});
+
+app.get("/api/section-content", cors(), (req, res) => {
+  getConnection().query(
+    "SELECT * FROM section_content",
+    [],
+    (err, rows, fields) => {
+      if (err) {
+        console.log("Failed to query for products: " + err);
+        res.sendStatus(500);
+        res.end();
+        return;
+      }
+
+      const sectionContent = rows.map(row => {
+        return {
+          id: row.rowId,
+          sectionId: row.sectionId,
+          link: row.linkRoute,
+          linkContent: row.linkContent,
+          bold: row.bold,
+          p: row.p
+        };
+      });
+
+      res.json(sectionContent);
+    }
+  );
 });
 
 const port = 5000;

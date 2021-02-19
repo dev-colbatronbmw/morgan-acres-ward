@@ -1,16 +1,16 @@
 import { useState, useCallback, useEffect } from "react";
 
-export default function useSection() {
-  const [sections, setSections] = useState([]);
+export default function useSectionContent(sectionId) {
+  const [sectionContent, setSectionContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [requestId, setRequestId] = useState(0);
   useEffect(() => {
     setLoading(true);
-    fetch("/api/sections")
+    fetch("/api/section-content")
       .then(res => res.json())
-      .then(setSections)
+      .then(setSectionContent)
       .then(() => {
-        console.log(sections);
+        console.log(sectionContent);
       })
       .finally(() => {
         setLoading(false);
@@ -24,9 +24,10 @@ export default function useSection() {
     if (!loading) {
       refresh();
     }
-  }, [sections]);
+  }, [sectionContent]);
 
   return {
-    sections
+    sectionContent,
+    loading
   };
 }
