@@ -50,10 +50,10 @@ app.use(
 // }
 
 const pool = mysql.createPool({
-  host: "us-cdbr-east-03.cleardb.com",
-  user: "b54de4b813b0d2",
-  password: "e33f4fcc",
-  database: "heroku_3b6ba14cc34f6dd"
+  host: "us-cdbr-east-03.cleardb.com", // us-cdbr-east-03.cleardb.com
+  user: "b54de4b813b0d2", //b54de4b813b0d2
+  password: "e33f4fcc", //e33f4fcc
+  database: "heroku_3b6ba14cc34f6dd" //heroku_3b6ba14cc34f6dd
 });
 
 function getConnection() {

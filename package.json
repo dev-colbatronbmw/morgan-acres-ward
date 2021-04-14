@@ -1,0 +1,40 @@
+{
+  "name": "reactexpress",
+  "version": "1.0.0",
+  "description": "Starter kit for creating React and Express apps",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "cd client && npm install",
+    "start": "DEBUG=app,app:* node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Brad Traversy",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.14.6"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.6.0",
+    "chalk": "^4.1.0",
+    "classnames": "^2.2.6",
+    "concurrently": "^3.5.1",
+    "cookie-parser": "^1.4.5",
+    "cookies": "^0.8.0",
+    "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "debug": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.2",
+    "express-session": "^1.17.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.4.18",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "react-bootstrap": "^1.5.0"
+  }
+}
