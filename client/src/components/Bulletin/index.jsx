@@ -36,8 +36,6 @@ function Sections({ loading }) {
                   className={classNames(
                     "sec",
                     "col",
-                    "border",
-                    "border-danger",
                     "align-self-center",
                     "justify-content-center"
                   )}
@@ -57,7 +55,7 @@ function Sections({ loading }) {
                       section={section}
                       index={index}
                       loading={loading}
-                    />{" "}
+                    />
                   </div>
                 </div>
               );
